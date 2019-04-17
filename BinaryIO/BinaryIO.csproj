@@ -5,8 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include=".nuget\nuget.exe" />
-      <Content Include=".nuget\nuget_build.bat" />
     </ItemGroup>
 
 </Project>
