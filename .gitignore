@@ -10,3 +10,5 @@
 BinaryIO.sln.DotSettings.user
 BinaryIO/bin/
 BinaryIO/obj/
+BinaryIO.Tests/bin/
+BinaryIO.Tests/obj/
