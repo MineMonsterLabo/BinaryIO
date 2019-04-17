@@ -1,0 +1,12 @@
+.gitignore
+.idea/.idea.BinaryIO/.idea/contentModel.xml
+.idea/.idea.BinaryIO/.idea/encodings.xml
+.idea/.idea.BinaryIO/.idea/indexLayout.xml
+.idea/.idea.BinaryIO/.idea/misc.xml
+.idea/.idea.BinaryIO/.idea/modules.xml
+.idea/.idea.BinaryIO/.idea/workspace.xml
+.idea/.idea.BinaryIO/.idea/vcs.xml
+.idea/.idea.BinaryIO/riderModule.iml
+BinaryIO.sln.DotSettings.user
+BinaryIO/bin/
+BinaryIO/obj/
