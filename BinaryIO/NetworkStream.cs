@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace BinaryIO
 {
     public class NetworkStream : BinaryStream
@@ -68,6 +70,30 @@ namespace BinaryIO
         public void WriteUVarLong(ulong value)
         {
             VarInt.WriteUVarLong(this, value);
+        }
+
+        public string ReadString()
+        {
+            uint len = ReadUVarInt();
+            if (len > 0)
+            {
+                return Encoding.UTF8.GetString(ReadBytes((int) len));
+            }
+
+            return string.Empty;
+        }
+
+        public void WriteString(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                WriteUVarInt(0);
+                return;
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(value);
+            WriteUVarInt((uint) buffer.Length);
+            WriteBytes(buffer);
         }
     }
 }
