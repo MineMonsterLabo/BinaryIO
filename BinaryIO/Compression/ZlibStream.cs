@@ -1,7 +1,7 @@
 using System.IO;
 using System.IO.Compression;
 
-namespace BinaryIO
+namespace BinaryIO.Compression
 {
     public class ZlibStream : DeflateStream
     {

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 
-namespace BinaryIO
+namespace BinaryIO.Compression
 {
     public static class CompressionManager
     {
