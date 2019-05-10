@@ -161,5 +161,21 @@ namespace RakDotNet.Tests
             Assert.True(buf[1] == 0x56);
             Assert.True(buf[0] == 0x78);
         }
+
+        [Test]
+        public void ReadBytesTest()
+        {
+            var stream = new BinaryStream();
+            stream.WriteByte(128);
+            stream.WriteUInt(0x12345678);
+            stream.Reset();
+            Assert.True(stream.ReadBytes().Length == 5);
+            stream.Reset();
+            Assert.False(stream.IsEndOfStream());
+            stream.Position = 3;
+            Assert.False(stream.IsEndOfStream());
+            stream.Position = 4;
+            Assert.True(stream.IsEndOfStream());
+        }
     }
 }

@@ -270,7 +270,7 @@ namespace BinaryIO
             int idx = 0;
             while (Length != Position)
             {
-                buff[idx] = ReadByte();
+                buff[idx++] = ReadByte();
             }
 
             return buff;
@@ -305,7 +305,7 @@ namespace BinaryIO
 
         public bool IsEndOfStream()
         {
-            return Length <= Position;
+            return Length - 1 <= Position;
         }
 
         public void SetBuffer(byte[] buffer)

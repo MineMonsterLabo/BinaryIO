@@ -2,6 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageVersion>1.1.3</PackageVersion>
+        <Title>BinaryIO</Title>
+        <Authors>hiroki</Authors>
+        <Description>endian support stream.</Description>
+        <Copyright>hiroki1999062</Copyright>
+        <PackageProjectUrl>https://github.com/hiroki19990625/BinaryIO</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/hiroki19990625/BinaryIO</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>BinartStreaming</PackageTags>
     </PropertyGroup>
 
 </Project>
