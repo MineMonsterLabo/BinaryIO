@@ -41,23 +41,24 @@ namespace BinaryIO.Compression
                 compressed.WriteByte(ZLIB_HEADER);
                 compressed.WriteByte(GetCompressionLevelByte(compressionLevel));
 
-                using (ZlibStream zlib = new ZlibStream(compressed, compressionLevel, false))
+                int sum;
+                using (ZlibStream zlib = new ZlibStream(compressed, compressionLevel, true))
                 {
                     byte[] buffer = stream.ToArray();
                     zlib.Write(buffer, 0, buffer.Length);
-
-                    if (oldStreamClose)
-                        stream.Close();
-
-                    int sum = zlib.Checksum;
-                    byte[] sumBytes = BitConverter.GetBytes(sum);
-                    if (BitConverter.IsLittleEndian)
-                    {
-                        Array.Reverse(sumBytes);
-                    }
-
-                    compressed.Write(sumBytes, 0, sumBytes.Length);
+                    sum = zlib.Checksum;
                 }
+
+                if (oldStreamClose)
+                    stream.Close();
+
+                byte[] sumBytes = BitConverter.GetBytes(sum);
+                if (BitConverter.IsLittleEndian)
+                {
+                    Array.Reverse(sumBytes);
+                }
+
+                compressed.Write(sumBytes, 0, sumBytes.Length);
 
                 return compressed.ToArray();
             }
@@ -88,10 +89,10 @@ namespace BinaryIO.Compression
                 {
                     byte[] buffer = stream.ToArray();
                     gzip.Write(buffer, 0, buffer.Length);
-
-                    if (oldStreamClose)
-                        stream.Close();
                 }
+
+                if (oldStreamClose)
+                    stream.Close();
 
                 return ms.ToArray();
             }
