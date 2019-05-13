@@ -7,9 +7,11 @@ endian and varint, compression support stream.
 
 ### Old Read / Write Guid Bytes
 M - MostByte
+
 L - LeastByte
 
 M * 8 (Endian Reverse)
+
 L * 8 (Endian Reverse)
 
 ### New Read / Write Guid Bytes
