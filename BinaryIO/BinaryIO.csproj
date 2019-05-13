@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>1.1.4</PackageVersion>
+        <PackageVersion>1.1.5</PackageVersion>
         <Title>BinaryIO</Title>
         <Authors>hiroki</Authors>
         <Description>endian support stream.</Description>
