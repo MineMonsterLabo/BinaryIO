@@ -188,20 +188,29 @@ namespace BinaryIO
 
         public Guid ReadGuid(ByteOrder order = ByteOrder.Big)
         {
-            byte[] most = Reverse(ReadBytes(8), order);
-            byte[] least = Reverse(ReadBytes(8), order);
-
-            return new Guid(most.Concat(least).ToArray());
+            byte[] data = Reverse(ReadBytes(16), order);
+            return new Guid(data);
         }
 
         public void WriteGuid(Guid guid, ByteOrder order = ByteOrder.Big)
         {
             byte[] buffer = guid.ToByteArray();
-            byte[] most = Reverse(buffer.Take(8).ToArray(), order);
-            byte[] least = Reverse(buffer.Skip(8).ToArray(), order);
+            WriteBytes(Reverse(buffer, order));
+        }
 
-            WriteBytes(most);
-            WriteBytes(least);
+        public Guid ReadUuid()
+        {
+            return new Guid(ReadInt(ByteOrder.Little), ReadShort(ByteOrder.Little), ReadShort(ByteOrder.Little),
+                ReadBytes(8));
+        }
+
+        public void WriteUuid(Guid guid)
+        {
+            BinaryStream stream = new BinaryStream(guid.ToByteArray());
+            WriteInt(stream.ReadInt(ByteOrder.Little), ByteOrder.Little);
+            WriteShort(stream.ReadShort(ByteOrder.Little), ByteOrder.Little);
+            WriteShort(stream.ReadShort(ByteOrder.Little), ByteOrder.Little);
+            WriteBytes(stream.ReadBytes());
         }
 
         public IPEndPoint ReadIpEndPoint(ByteOrder order = ByteOrder.Big)

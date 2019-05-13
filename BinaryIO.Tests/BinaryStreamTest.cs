@@ -35,6 +35,9 @@ namespace RakDotNet.Tests
             stream.WriteStringUtf8("strstrほげほげ", ByteOrder.Little);
             stream.WriteTimeSpan(new TimeSpan(0, 0, 5, 40, 91));
             stream.WriteDateTime(new DateTime(2019, 3, 22, 5, 40, 30, 300));
+            Guid guid = Guid.NewGuid();
+            stream.WriteGuid(guid);
+            stream.WriteUuid(guid);
 
             var read = new BinaryStream(stream.ToArray());
             Assert.True(read.ReadByte() == 123);
@@ -63,6 +66,8 @@ namespace RakDotNet.Tests
                         new TimeSpan(0, 0, 5, 40, 91));
             Assert.True(read.ReadDateTime() ==
                         new DateTime(2019, 3, 22, 5, 40, 30, 300));
+            Assert.True(read.ReadGuid() == guid);
+            Assert.True(read.ReadUuid() == guid);
         }
 
         [Test]
