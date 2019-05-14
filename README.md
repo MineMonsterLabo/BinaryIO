@@ -3,6 +3,11 @@
 
 endian and varint, compression support stream.
 
+## ReleaseNotes
+### Update 1.1.5 
+- Zlib Compression Bug Fix!
+
+
 ## Version 1.1.4 Incompatible Change Guid
 
 ### Old Read / Write Guid Bytes
