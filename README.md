@@ -4,6 +4,9 @@
 endian and varint, compression support stream.
 
 ## ReleaseNotes
+### Update 1.1.6 
+- Improve performance
+
 ### Update 1.1.5 
 - Zlib Compression Bug Fix!
 
