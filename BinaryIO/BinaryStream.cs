@@ -265,10 +265,10 @@ namespace BinaryIO
         public byte[] ReadBytes(int length)
         {
             byte[] buff = new byte[length];
-            for (int i = 0; i < length; i++)
-            {
-                buff[i] = ReadByte();
-            }
+            int read = Read(buff, 0, length);
+
+            if (read != length)
+                throw new IndexOutOfRangeException();
 
             return buff;
         }
@@ -287,7 +287,7 @@ namespace BinaryIO
 
         public void WriteBytes(byte[] buffer)
         {
-            for (int i = 0; i < buffer.Length; i++)
+            for (long i = 0; i < buffer.LongLength; i++)
             {
                 WriteByte(buffer[i]);
             }
