@@ -4,6 +4,10 @@
 endian and varint, compression support stream.
 
 ## ReleaseNotes
+### Update 1.1.7
+- fix WriteStringUtf8
+- add L4StringUtf8
+
 ### Update 1.1.6 
 - Improve performance
 
