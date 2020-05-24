@@ -33,6 +33,10 @@ namespace RakDotNet.Tests
             stream.WriteTriad(0xffffff, ByteOrder.Little);
             stream.WriteStringUtf8("strstrほげほげ");
             stream.WriteStringUtf8("strstrほげほげ", ByteOrder.Little);
+            stream.WriteStringUtf8(null, ByteOrder.Little);
+            stream.WriteL4StringUtf8("strstrほげほげ");
+            stream.WriteL4StringUtf8("strstrほげほげ", ByteOrder.Little);
+            stream.WriteL4StringUtf8(null, ByteOrder.Little);
             stream.WriteTimeSpan(new TimeSpan(0, 0, 5, 40, 91));
             stream.WriteDateTime(new DateTime(2019, 3, 22, 5, 40, 30, 300));
             Guid guid = Guid.NewGuid();
@@ -62,6 +66,10 @@ namespace RakDotNet.Tests
             Assert.True(read.ReadTriad(ByteOrder.Little) == 0xffffff);
             Assert.True(read.ReadStringUtf8() == "strstrほげほげ");
             Assert.True(read.ReadStringUtf8(ByteOrder.Little) == "strstrほげほげ");
+            Assert.True(read.ReadStringUtf8(ByteOrder.Little) == String.Empty);
+            Assert.True(read.ReadL4StringUtf8() == "strstrほげほげ");
+            Assert.True(read.ReadL4StringUtf8(ByteOrder.Little) == "strstrほげほげ");
+            Assert.True(read.ReadL4StringUtf8(ByteOrder.Little) == String.Empty);
             Assert.True(read.ReadTimeSpan() ==
                         new TimeSpan(0, 0, 5, 40, 91));
             Assert.True(read.ReadDateTime() ==

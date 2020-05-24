@@ -158,11 +158,40 @@ namespace BinaryIO
 
         public void WriteStringUtf8(string value, ByteOrder order = ByteOrder.Big)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                WriteUShort(0, order);
+                return;
+            }
+
             byte[] buffer = Encoding.UTF8.GetBytes(value);
             int len = buffer.Length;
             if (len > ushort.MaxValue)
                 throw new IOException($"Max String Length Range 0 ~ ${ushort.MaxValue}.");
             WriteUShort((ushort) len, order);
+            WriteBytes(buffer);
+        }
+
+        public string ReadL4StringUtf8(ByteOrder order = ByteOrder.Big)
+        {
+            int len = ReadInt(order);
+            if (len > 0)
+                return Encoding.UTF8.GetString(ReadBytes(len));
+            else
+                return string.Empty;
+        }
+
+        public void WriteL4StringUtf8(string value, ByteOrder order = ByteOrder.Big)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                WriteInt(0, order);
+                return;
+            }
+
+            byte[] buffer = Encoding.UTF8.GetBytes(value);
+            int len = buffer.Length;
+            WriteInt(len, order);
             WriteBytes(buffer);
         }
 
